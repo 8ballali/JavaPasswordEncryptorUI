@@ -1,7 +1,7 @@
 package components;
 
 public class Label {
-    private int width;
+    private final int width;
     public String text;
 
     public Label(String text, int width){

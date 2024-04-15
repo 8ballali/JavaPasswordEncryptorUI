@@ -1,11 +1,11 @@
 package components;
 
 public class SelectInput {
-    private String label;
-    private int width;
+    private final String label;
+    private final int width;
     private int value;
-    private Input input;
-    private String[] selection;
+    private final Input input;
+    private final String[] selection;
 
     public SelectInput(String label, String[]selection,int width){
         this.label = label;

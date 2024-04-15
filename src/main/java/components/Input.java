@@ -2,8 +2,8 @@ package components;
 import java.util.Scanner;
 
 public class Input {
-    private String label;
-    private Scanner input;
+    private final String label;
+    private final Scanner input;
     private String value;
 
     public Input(String label){
@@ -22,7 +22,7 @@ public class Input {
         try{
             return Integer.parseInt(value);
         } catch(NumberFormatException e){
-            //System.out.println("Input harus berupa bilangan bulat.");
+
             return 0;
         }
 
@@ -32,12 +32,12 @@ public class Input {
         try{
             return Double.parseDouble(value);
         } catch(NumberFormatException e){
-            //System.out.println("Input harus berupa bilangan desimal.");
+
             return 0;
         }
     }
 
     int nextLine() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
