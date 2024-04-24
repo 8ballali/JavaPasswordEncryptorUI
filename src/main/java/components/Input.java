@@ -1,43 +1,31 @@
 package components;
 import java.util.Scanner;
 
-public class Input {
-    private final String label;
-    private final Scanner input;
+public class Input implements Component{
+    private String label;
+    public Scanner input = new Scanner(System.in);;
     private String value;
 
-    public Input(String label){
-        this.label = label;
-        this.input = new Scanner(System.in);
+    public Input(String text){
+        this.label = text;
     }
+
     public void draw(){
-        System.out.print("|  " + label + ":");
+        System.out.print("|  " + label + ": ");
+        this.value = input.nextLine();
     }
+
     public String getValue(){
-        value = input.nextLine();
-        return value;
+        return this.value;
     }
+
     public int getValueInt(){
-        value = input.nextLine();
-        try{
-            return Integer.parseInt(value);
-        } catch(NumberFormatException e){
-
-            return 0;
-        }
-
+        return Integer.parseInt(value);
     }
+
     public double getValueDouble(){
-        value = input.nextLine();
-        try{
-            return Double.parseDouble(value);
-        } catch(NumberFormatException e){
-
-            return 0;
-        }
+        return Double.parseDouble(value);
     }
 
-    int nextLine() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
+

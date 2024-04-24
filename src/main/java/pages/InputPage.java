@@ -2,74 +2,38 @@ package pages;
 
 import encryptor.PasswordStore;
 import components.*;
-public class InputPage {
-    public String title, judul, username, password;
-    public int width;
+public class InputPage extends BasePage{
+    private String account_name, username, pass;
 
-    private final Hline hline;
-    private final Space space;
-    private final Label label;
-
-    public InputPage(String title, int width){
-        this.width = width;
-        this.title = title;
-        this.hline = new Hline(width);
-        this.space = new Space(width);
-        this.label = new Label(title, width);
+    public InputPage(int width){
+        super("Inputan Password", width);
     }
 
-    public void draw(){
-        this.drawHeader();
+    @Override
+    public void drawContent(){
+        new Label("Inputan Password Baru", width);
+        Input input1 = new Input("Judul Password");
+        input1.draw();
+        this.account_name = input1.getValue();
+
+        Input input2 = new Input("Username");
+        input2.draw();
+        this.username = input2.getValue();
+
+        Input input3 = new Input("Password");
+        input3.draw();
+        this.pass = input3.getValue();
+
+        String [] categories = {"Belum terkategori", "Aplikasi web", "Aplikasi mobile", "Akun lainnya"};
+        SelectInput select = new SelectInput("Pilihan", categories, width);
+        select.draw();
+        int cat = select.getValue() - 1;
+
+        DataPassword.passData.add(new PasswordStore(account_name, username, pass, cat));
+
         this.space.draw();
-        this.drawContent();
-    }
-
-    public void drawHeader(){
-        this.hline.draw();
-        this.space.draw();
-        this.label.draw();
-        this.space.draw();
-        this.hline.draw();
-    }
-
-    private void drawContent(){
-        new Label("Inputan Password Baru", this.width).draw();
-
-        Input inputJudul = new Input("Judul Password");
-        Input inputUsername = new Input("Username");
-        Input inputPassword = new Input("Password");
-        SelectInput inputKategori = new SelectInput("Kategori",
-                new String[]{
-                        "Belum terkategori",
-                        "Aplikasi web",
-                        "Aplikasi mobile",
-                        "Akun lainnya"
-                }, width);
-
-        inputJudul.draw();
-        this.judul = inputJudul.getValue();
-
-        inputUsername.draw();
-        this.username = inputUsername.getValue();
-
-        inputPassword.draw();
-        this.password = inputPassword.getValue();
-
-        inputKategori.draw();
-        int kategori = inputKategori.getValue() - 1;
-
-        PasswordStore passwordStore = new PasswordStore(judul, username, password, kategori);
-        DataPassword.passData.add(passwordStore);
-
-        new Label("----- -----", width).draw();
         new Label("Input password berhasil dibuat", width).draw();
-
-        drawFooter();
-
+        new MainPage(width).draw();
     }
 
-    public void drawFooter(){
-        this.space.draw();
-        this.hline.draw();
-    }
 }

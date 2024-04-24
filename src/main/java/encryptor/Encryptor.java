@@ -8,8 +8,10 @@ import java.util.Base64;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Encryptor {
+
     private final static String algorithm = "AES";
     private final static String transformation = "AES/ECB/PKCS5Padding";
+
     public static String generateKey() throws NoSuchAlgorithmException{
         KeyGenerator key = KeyGenerator.getInstance(algorithm);
         SecretKey secret = key.generateKey();
@@ -24,7 +26,6 @@ public class Encryptor {
         cipher.init(Cipher.ENCRYPT_MODE, originalKey);
         byte[] encryptedBytes = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
         String encryptedText = Base64.getEncoder().encodeToString(encryptedBytes);
-
         return encryptedText;
     }
     public static String decrypt(String encodedText, String key) throws Exception {
@@ -35,9 +36,9 @@ public class Encryptor {
         cipher.init(Cipher.DECRYPT_MODE, originalKey);
         byte[] encryptedBytes = Base64.getDecoder().decode(encodedText);
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-
         String decryptedText = new String(decryptedBytes,
                 StandardCharsets.UTF_8);
         return decryptedText;
     }
 }
+

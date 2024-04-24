@@ -1,17 +1,18 @@
 package components;
 
-public class Hline {
+public class HLine implements Component{
     private int width;
 
-    public Hline(int width){
+    public HLine(int width){
         this.width = width;
     }
 
     public void draw(){
         System.out.print("+");
-        for(int i=0; i < width; i++){
+        for (int i = 0; i < width; i++) {
             System.out.print("=");
         }
         System.out.println("+");
     }
 }
+

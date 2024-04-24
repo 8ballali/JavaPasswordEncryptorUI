@@ -6,7 +6,8 @@ import pages.DataPassword;
 public class Main {
     public static void main(String[] args) {
         DataPassword.loadCSVData();
-        new MainPage("Aplikasi Password Vault", 80).draw();
+        new MainPage(90).draw();
         DataPassword.saveCSVData();
+
     }
 }

@@ -1,21 +1,21 @@
 package components;
 
-public class Label {
-    private final int width;
-    public String text;
+public class Label implements Component{
+    private int width;
+    private String text;
 
     public Label(String text, int width){
         this.text = text;
         this.width = width;
     }
-    public void draw(){
-        int panjangTeks = text.length();
 
-        System.out.print("|  " + text);
-        for(int i=0; i<width-2-panjangTeks;i++){
+    public void draw(){
+        System.out.print("|  ");
+        System.out.print(text);
+        for (int i = 0; i < width - text.length()-2; i++) {
             System.out.print(" ");
         }
         System.out.println("|");
     }
-
 }
+

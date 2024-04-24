@@ -1,27 +1,29 @@
 package components;
 
-public class SelectInput {
-    private final String label;
-    private final int width;
-    private int value;
-    private final Input input;
-    private final String[] selection;
+public class SelectInput implements Component{
+    private String label, selection[];
+    public Input input;
+    private int width, value;
 
-    public SelectInput(String label, String[]selection,int width){
+    public SelectInput(String label, String selection[], int width){
         this.label = label;
-        this.selection = selection;
         this.width = width;
-        this.input = new Input("Pilihan");
+        this.selection = selection;
     }
+
     public void draw(){
-        //System.out.println("|  "+ label +" |");
-        new Label(label,width).draw();
-        for(int i=0; i <selection.length; i++){
-            new Label("  [" +(i+1)+ "] "+ selection[i], width).draw();
+        // System.out.print("|  " + label + ": ");
+        new Label(label, width).draw();
+        for (int i = 0; i < selection.length; i++) {
+            new Label("[" + (i+1) + "] " + selection[i], width).draw();
         }
+        input = new Input("Pilihan");
         input.draw();
+        this.value = input.getValueInt();
     }
+
     public int getValue(){
-        return input.getValueInt();
+        return this.value;
     }
 }
+
