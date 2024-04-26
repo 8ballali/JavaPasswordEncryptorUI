@@ -3,18 +3,25 @@ import components.*;
 import encryptor.PasswordStore;
 
 public class DetailPage extends BasePage{
-    private PasswordStore passStr;
+
 
     public DetailPage(int width){
         super("Account Detail", width);
     }
 
     public void drawContent(){
+        int index = 1;
         for (PasswordStore passStr : DataPassword.passData) {
-            new Label(passStr.username, this.width);
-            new Label(passStr.name, this.width);
-            new Label(passStr.getCategory(), this.width);
+            new Label(" "  +index+   ".Username : " + passStr.username, this.width).draw();
+            new Label("   Name     : " + passStr.name, this.width).draw();
+            new Label("   Category : " + passStr.getCategory(), this.width).draw();
+            new Space(this.width).draw();
+            index++;
         }
+        this.space.draw();
+        this.hline.draw();
+
+        new MainPage(this.width).draw();
     }
 }
 
